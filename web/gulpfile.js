@@ -84,7 +84,14 @@ async function html(done) {
 		.pipe(concat("index.html"))
 
 	if (SHOULD_MINIFY) {
-		build.pipe(htmlmin({ collapseWhitespace: true }))
+		build.pipe(htmlmin({ 
+			collapseWhitespace: true,
+			collapseInlineTagWhitespace: true,
+			minifyCSS: true,
+			removeComments: true,
+			removeEmptyAttributes: true,
+			useShortDoctype: true,
+		}))
 	}
 
 	build.pipe(dest(buildFolder))
